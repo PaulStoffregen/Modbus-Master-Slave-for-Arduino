@@ -24,6 +24,7 @@ Modbus slave(1,0,0); // this is slave @1 and RS-232 or USB-FTDI
 
 void setup() {
   slave.begin( 19200 ); // baud-rate at 19200
+  //slave.begin( 19200, SERIAL_8E1 ); // 19200 baud, 8-bits, even, 1-bit stop
 }
 
 void loop() {
