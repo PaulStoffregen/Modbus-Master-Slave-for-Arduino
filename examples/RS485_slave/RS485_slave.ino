@@ -14,7 +14,7 @@
 
 // data array for modbus network sharing
 uint16_t au16data[16] = {
-  3, 1415, 9265, 4, 2, 7182, 28182, 8, 0, 0, 0, 0, 0, 0, 1, -1 };
+  3, 1415, 9265, 4, 2, 7182, 28182, 8, 0, 0, 0, 0, 0, 0, 1, 65535 };
 
 /**
  *  Modbus object declaration
