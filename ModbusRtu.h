@@ -330,6 +330,9 @@ void Modbus::begin(long u32speed)
         // return RS485 transceiver to transmit mode
         pinMode(u8txenpin, OUTPUT);
         digitalWrite(u8txenpin, LOW);
+#if defined(TEENSYDUINO)
+        port->transmitterEnable(u8txenpin);
+#endif
     }
 
     while(port->read() >= 0);
@@ -936,8 +939,8 @@ void Modbus::sendTxBuffer()
             UCSR0A=UCSR0A |(1 << TXC0);
             break;
         }
-#endif
         digitalWrite( u8txenpin, HIGH );
+#endif
     }
 
     // transfer buffer to serial line
@@ -974,10 +977,10 @@ void Modbus::sendTxBuffer()
             while (!(UCSR0A & (1 << TXC0)));
             break;
         }
-#endif
 
         // return RS485 transceiver to receive mode
         digitalWrite( u8txenpin, LOW );
+#endif
     }
     if(u8serno<4)
         while(port->read() >= 0);
