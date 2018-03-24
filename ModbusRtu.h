@@ -420,6 +420,9 @@ void Modbus::begin(long u32speed,uint8_t u8config)
         // return RS485 transceiver to transmit mode
         pinMode(u8txenpin, OUTPUT);
         digitalWrite(u8txenpin, LOW);
+#if defined(TEENSYDUINO)
+        port->transmitterEnable(u8txenpin);
+#endif
     }
 
     while(port->read() >= 0);
